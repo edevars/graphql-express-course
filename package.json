@@ -14,5 +14,10 @@
     "graphql": "^15.3.0",
     "graphql-playground-middleware-express": "^1.7.18",
     "nodemon": "^2.0.4"
+  },
+  "devDependencies": {
+    "eslint": "^7.4.0",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-plugin-import": "^2.22.0"
   }
 }
