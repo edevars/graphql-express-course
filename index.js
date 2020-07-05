@@ -1,4 +1,11 @@
-const { graphql, buildSchema } = require("graphql");
+const express = require("express");
+const { buildSchema } = require("graphql");
+const { graphqlHTTP } = require("express-graphql");
+const expressPlayground = require("graphql-playground-middleware-express")
+  .default;
+
+const port = process.env.PORT || 3000;
+const app = express();
 
 // Defining schema
 const schema = buildSchema(`
@@ -10,15 +17,27 @@ const schema = buildSchema(`
 
 // Setting resolvers
 const resolvers = {
-    hello: function(){
-        return "Hello world!"
-    },
-    goodbye: function(){
-        return "Goodbye cruel world!"
-    }
-}
+  hello: function () {
+    return "Hello world!";
+  },
+  goodbye: function () {
+    return "Goodbye cruel world!";
+  },
+};
 
-// Executing schema
-graphql(schema,"{goodbye}", resolvers).then((data) => {
-  console.log(data);
+// Config of express-graphql
+app.use(
+  "/api",
+  graphqlHTTP({
+    schema,
+    graphiql: false,
+    rootValue: resolvers,
+  })
+);
+
+// Settings of graphql playground
+app.get("/playground", expressPlayground({ endpoint: "/api" }));
+
+app.listen(port, () => {
+  console.log(`Listening in http://localhost:${port}/playground`);
 });
