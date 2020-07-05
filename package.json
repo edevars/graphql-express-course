@@ -13,6 +13,7 @@
     "express-graphql": "^0.10.2",
     "graphql": "^15.3.0",
     "graphql-playground-middleware-express": "^1.7.18",
+    "graphql-tools": "^6.0.12",
     "nodemon": "^2.0.4"
   },
   "devDependencies": {

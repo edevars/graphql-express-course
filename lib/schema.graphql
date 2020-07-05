@@ -1,12 +1,14 @@
 type Course {
   id: ID!
-  title: String
+  title: String!
   teacher: String
-  description: String
+  description: String!
   topic: String
 }
 
 type Query {
   "Retrives all the courses"
   getCourses: [Course]
+  "Retieves an unique course by ID"
+  getCourse(id: ID!): Course!
 }
